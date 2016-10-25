@@ -33,7 +33,16 @@ module.exports = {
                 test: /\.js$/,
                 loaders: ['babel-loader', 'eslint-loader'],
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.scss$/,
+                loader: 'css-to-string-loader!css-loader!sass-loader'
+            },
+            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+            { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
         ]
     },
     plugins: [

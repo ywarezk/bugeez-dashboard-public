@@ -33,11 +33,13 @@ module.exports = {
           parser: WebpackIsomorphicToolsPlugin.url_loader_parser
         },
         style_modules: {
+            include: ['./node_modules/'],
             extensions: [
                 'less',
                 'scss'
             ],
-            parser: WebpackIsomorphicToolsPlugin.css_modules_loader_parser
+            parser: WebpackIsomorphicToolsPlugin.css_modules_loader_parser,
+            path: WebpackIsomorphicToolsPlugin.style_loader_path_extractor
         }
     }
 }

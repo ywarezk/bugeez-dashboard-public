@@ -20,7 +20,7 @@ export default class Home extends React.Component {
                 <Helmet
                   title="Homepage"
                 />
-                <h1>Welcome to the homepage</h1>
+                <h1>Welcome to the homepage <i className="fa fa-plane" /></h1>
                 <TodoForm />
                 <SearchList />
                 <TodoList />

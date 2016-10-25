@@ -8,6 +8,10 @@
  * @copyright: Nerdeez
  */
 
+/******************
+ * begin imports
+ *******************/
+
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
@@ -15,6 +19,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DevTools from '../../components/DevTools/DevTools';
 import * as devToolsActions from '../../redux/actions/devtools';
+
+/******************
+ * end imports
+ *******************/
+
 
 @connect(
     state => ({

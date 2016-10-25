@@ -18,8 +18,10 @@ global.__DEVELOPMENT__ = process.env.NODE_ENV !== "production";
 
 // start the server
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
-global.webpackIsomorphicTools = new WebpackIsomorphicTools(require('../webpack-isomorphic-tools.config.js'))
-    .development(process.env.NODE_ENV !== 'production')
-    .server(rootDir, function(){
-        require('../src/server/server.js');
-    });
+global.webpackIsomorphicTools = new WebpackIsomorphicTools(require('../webpack-isomorphic-tools.config.js'));
+if (__DEVELOPMENT__){
+    global.webpackIsomorphicTools = global.webpackIsomorphicTools.development()
+} 
+global.webpackIsomorphicTools.server(rootDir, function(){
+    require('../src/server/server.js');
+});

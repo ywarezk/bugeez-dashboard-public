@@ -30,6 +30,19 @@ export default class Html extends React.Component{
                 <head>
                     {head.title.toComponent()}
                     {head.meta.toComponent()}
+
+                    { /* begin global styling*/ }
+                    <style>
+                    {
+                        (() => {
+                            const styles = require('font-awesome/scss/font-awesome.scss');
+                            debugger;
+                            return styles
+                        })()
+                    }
+                    </style>
+                    { /* end global styling*/ }
+
                 </head>
                 <body>
                     <script dangerouslySetInnerHTML={{__html: `window.__initialState=${serialize(store.getState())};${globals}`}} charSet="UTF-8"/>
