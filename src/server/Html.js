@@ -34,7 +34,7 @@ export default class Html extends React.Component {
                     <style>
                         {
                             (() => {
-                                const styles = require('font-awesome/scss/font-awesome.scss');
+                                const styles = '';//require('font-awesome/scss/font-awesome.scss');
 
                                 debugger;
                                 return styles;

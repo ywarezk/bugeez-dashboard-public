@@ -8,8 +8,12 @@
  */
 
 var path = require('path');
+var fs = require('fs');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
+var S3Plugin = require('webpack-s3-plugin');
+var createRxJSExternals = require('webpack-rxjs-externals');
+
 
 var isProd = process.env.NODE_ENV === 'production';
 
@@ -76,20 +80,35 @@ if(isProd){
     );
 }
 
+var nodeModules = {};
+fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bin'].indexOf(x) === -1;
+  })
+  .forEach(function(mod) {
+    nodeModules[mod] = 'commonjs ' + mod;
+  });
+
 var serverConfig = {
-  target: 'node',
-  entry: './src/server/server.js', // use the entry file of the node server if everything is ts rather than es5
-  output: {
-    path: path.resolve(__dirname, 'dist', 'server'),
-    libraryTarget: 'commonjs2'
-  },
-  node: {
-    global: true,
-    __dirname: true,
-    __filename: true,
-    process: true,
-    Buffer: true
-  }
+    target: 'node',
+    entry: './src/server/server.js', // use the entry file of the node server if everything is ts rather than es5
+    output: {
+        path: path.resolve(__dirname, 'dist', 'server'),
+        libraryTarget: 'commonjs2',
+        filename: 'server.js'
+    },
+    node: {
+        global: true,
+        __dirname: true,
+        __filename: true,
+        process: true,
+        Buffer: true
+    },
+    externals: includeClientPackages([
+        'commonjs express',
+        'commonjs rxjs'
+    ])
+
 };
 
 // Default config
@@ -111,3 +130,19 @@ module.exports = [
   // Server
   webpackMerge({}, defaultConfig, commonConfig, serverConfig)
 ];
+
+function includeClientPackages(packages) {
+  return function(context, request, cb) {
+    if (packages && packages.indexOf(request) !== -1) {
+      return cb();
+    }
+    return checkNodeImport(context, request, cb);
+  };
+}
+// Helpers
+function checkNodeImport(context, request, cb) {
+  if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
+    cb(null, 'commonjs ' + request); return;
+  }
+  cb();
+}

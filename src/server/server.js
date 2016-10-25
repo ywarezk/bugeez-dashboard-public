@@ -11,8 +11,8 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import Express from 'express';
 import http from 'http';
+import Express from 'express';
 import { match, Router } from 'react-router';
 import PrettyError from 'pretty-error';
 import ReactDOM from 'react-dom/server';
@@ -21,7 +21,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import nzCreateStore from '../redux/store/store';
 import Html from './Html';
 import getRoutes from '../routes';
-
 
 const app = new Express();
 const server = new http.Server(app);
@@ -91,10 +90,7 @@ app.use((req, res) => {
                 // return response
                 res.status(200);
                 res.send(
-                    `<!DOCTYPE html>
-                    `
-                    +
-                    ReactDOM.renderToString(<Html
+                    '<!DOCTYPE html>' + ReactDOM.renderToString(<Html
                       store={store}
                       component={componentString}
                     />)
