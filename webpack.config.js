@@ -13,6 +13,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
 var S3Plugin = require('webpack-s3-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack');
 
 var isProd = process.env.NODE_ENV === 'production';
 
@@ -24,11 +25,7 @@ var commonConfig = {
                 loaders: ['babel-loader', 'eslint-loader'],
                 exclude: /node_modules/
             },
-            // {
-            //     test: /\.scss$/,
-            //     loader: 'css-to-string-loader!css-loader!sass-loader'
-            // },
-            { test: /\.scss$/, loader: ExtractTextPlugin.extract({
+            { test: /\.scss$/, include: /node_modules/, loader: ExtractTextPlugin.extract({
                 fallbackLoader: "style-loader",
                 loader: "css-loader!sass-loader"
             }) },
@@ -86,15 +83,6 @@ if(isProd){
     );
 }
 
-var nodeModules = {};
-fs.readdirSync('node_modules')
-  .filter(function(x) {
-    return ['.bin'].indexOf(x) === -1;
-  })
-  .forEach(function(mod) {
-    nodeModules[mod] = 'commonjs ' + mod;
-  });
-
 var serverConfig = {
     target: 'node',
     entry: './src/server/server.js', // use the entry file of the node server if everything is ts rather than es5
@@ -113,9 +101,10 @@ var serverConfig = {
     externals: includeClientPackages([
         'commonjs express',
         'commonjs rxjs'
-        // 'commonjs font-awesome'
-    ])
-
+    ]),
+    plugins: [
+        new webpack.IgnorePlugin(/\.(css|less|scss)$/)
+    ]
 };
 
 // Default config
