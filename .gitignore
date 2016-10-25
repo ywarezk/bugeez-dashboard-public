@@ -2,3 +2,5 @@ node_modules
 .idea
 dist
 .idea/*
+.idea/modules.xml
+.idea/bugeez-dashboard-diys.iml
