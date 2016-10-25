@@ -12,6 +12,7 @@
  * begin imports
  *******************/
 
+
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
@@ -20,10 +21,11 @@ import { bindActionCreators } from 'redux';
 import DevTools from '../../components/DevTools/DevTools';
 import * as devToolsActions from '../../redux/actions/devtools';
 
+require('font-awesome/scss/font-awesome.scss');
+
 /******************
  * end imports
  *******************/
-
 
 @connect(
     state => ({

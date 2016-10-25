@@ -12,8 +12,7 @@ var fs = require('fs');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
 var S3Plugin = require('webpack-s3-plugin');
-var createRxJSExternals = require('webpack-rxjs-externals');
-
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var isProd = process.env.NODE_ENV === 'production';
 
@@ -25,10 +24,14 @@ var commonConfig = {
                 loaders: ['babel-loader', 'eslint-loader'],
                 exclude: /node_modules/
             },
-            {
-                test: /\.scss$/,
-                loader: 'css-to-string-loader!css-loader!sass-loader'
-            },
+            // {
+            //     test: /\.scss$/,
+            //     loader: 'css-to-string-loader!css-loader!sass-loader'
+            // },
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract({
+                fallbackLoader: "style-loader",
+                loader: "css-loader!sass-loader"
+            }) },
             { test: /\.json$/, loader: 'raw-loader' },
             { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
             { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
@@ -36,7 +39,10 @@ var commonConfig = {
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
         ]
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin("styles.css")
+    ]
 }
 
 var clientConfig = {
@@ -107,6 +113,7 @@ var serverConfig = {
     externals: includeClientPackages([
         'commonjs express',
         'commonjs rxjs'
+        // 'commonjs font-awesome'
     ])
 
 };
