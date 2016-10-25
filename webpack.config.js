@@ -9,24 +9,11 @@
 
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var WebpackMd5Hash = require('webpack-md5-hash');
 
-//isomorphic tools
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools.config.js'));
-if (process.env.NODE_ENV !== 'production'){
-    webpackIsomorphicToolsPlugin = webpackIsomorphicToolsPlugin.development();
-}
+var isProd = process.env.NODE_ENV === 'production';
 
-module.exports = {
-    entry: {
-        main: './src/client.js'
-    },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name]-[chunkhash].js',
-        chunkFilename: '[name]-[chunkhash].js',
-        publicPath: 'assets/'
-    },
+var commonConfig = {
     module: {
         loaders: [
             {
@@ -44,8 +31,82 @@ module.exports = {
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
         ]
-    },
-    plugins: [
-        webpackIsomorphicToolsPlugin
-    ]
+    }
 }
+
+var clientConfig = {
+  target: 'web',
+  entry: {
+    'app': './src/client'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist', 'client'),
+    publicPath: isProd ? 'https://cdn.bugeez.io/' : 'http://localhost:3000/assets/dist/',
+    filename: '[name].[chunkhash].js'
+  },
+  node: {
+    global: true,
+    __dirname: true,
+    __filename: true,
+    process: true,
+    Buffer: false
+  },
+  plugins: [
+    new WebpackMd5Hash()
+  ]
+};
+
+//plugins used in production
+if(isProd){
+    clientConfig.plugins.push(
+        new S3Plugin({
+          s3Options: {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+            region: 'eu-west-1'
+          },
+          s3UploadOptions: {
+            Bucket: process.env.AWS_STORAGE_BUCKET_NAME
+          },
+          cdnizerOptions: {
+            defaultCDNBase: 'http://asdf.ca'
+          }
+        })
+    );
+}
+
+var serverConfig = {
+  target: 'node',
+  entry: './src/server/server.js', // use the entry file of the node server if everything is ts rather than es5
+  output: {
+    path: path.resolve(__dirname, 'dist', 'server'),
+    libraryTarget: 'commonjs2'
+  },
+  node: {
+    global: true,
+    __dirname: true,
+    __filename: true,
+    process: true,
+    Buffer: true
+  }
+};
+
+// Default config
+var defaultConfig = {
+  context: __dirname,
+  output: {
+    filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+    publicPath: 'assets/'
+  }
+};
+
+// export webpack configurations
+var webpackMerge = require('webpack-merge');
+module.exports = [
+  // Client
+  webpackMerge({}, defaultConfig, commonConfig, clientConfig),
+
+  // Server
+  webpackMerge({}, defaultConfig, commonConfig, serverConfig)
+];

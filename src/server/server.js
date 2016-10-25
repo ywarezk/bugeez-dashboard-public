@@ -33,6 +33,10 @@ const pretty = new PrettyError();
 var path = require('path');
 const rootDir = path.resolve(__dirname, '../../');
 
+//set the globals
+global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+global.__CLIENT__ = false;
+
 /**
  * serve the static files from the dist folder
  */
