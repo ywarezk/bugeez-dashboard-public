@@ -25,6 +25,7 @@ var commonConfig = {
                 test: /\.scss$/,
                 loader: 'css-to-string-loader!css-loader!sass-loader'
             },
+            { test: /\.json$/, loader: 'raw-loader' },
             { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
             { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },

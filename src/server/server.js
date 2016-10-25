@@ -13,16 +13,14 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Express from 'express';
 import http from 'http';
-import nzCreateStore from '../redux/store/store';
-import { match } from 'react-router';
+import { match, Router } from 'react-router';
 import PrettyError from 'pretty-error';
-import { Router } from 'react-router';
-import getRoutes from '../routes';
 import ReactDOM from 'react-dom/server';
-import Html from './Html';
-import App from '../views/App/App';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
+import nzCreateStore from '../redux/store/store';
+import Html from './Html';
+import getRoutes from '../routes';
 
 
 const app = new Express();
@@ -30,7 +28,8 @@ const server = new http.Server(app);
 const pretty = new PrettyError();
 
 // root dir
-var path = require('path');
+const path = require('path');
+
 const rootDir = path.resolve(__dirname, '../../');
 
 //set the globals
@@ -47,24 +46,17 @@ app.use('/assets', Express.static(path.join(rootDir, 'dist')));
  * server side
  */
 app.use((req, res) => {
-    if (__DEVELOPMENT__) {
-        // Do not cache webpack stats: the script file would change since
-        // hot module replacement is enabled in the development env
-        webpackIsomorphicTools.refresh();
-    }
-
     const memoryHistory = createHistory(req.originalUrl);
     const store = nzCreateStore(memoryHistory);
     const history = syncHistoryWithStore(memoryHistory, store);
 
     match(
         {
-            history: history,
+            history,
             routes: getRoutes(),
-            location: req.originalUrl
+            location: req.originalUrl,
         },
         (error, redirectLocation, renderProps) => {
-
             // if the route has a redirect
             if (redirectLocation) {
                 res.redirect(redirectLocation.pathname + redirectLocation.search);
@@ -87,7 +79,7 @@ app.use((req, res) => {
             }
 
             // create our application
-            if(renderProps){
+            if (renderProps) {
                 const componentString = ReactDOM.renderToString(
                     <Provider store={store}>
                         <Router history={history} >
@@ -103,9 +95,8 @@ app.use((req, res) => {
                     `
                     +
                     ReactDOM.renderToString(<Html
-                        store={store}
-                        component={componentString}
-                        assets={webpackIsomorphicTools.assets()}
+                      store={store}
+                      component={componentString}
                     />)
                 );
                 return;
@@ -125,10 +116,8 @@ app.use((req, res) => {
                 `
             );
             return;
-
         }
     );
-
 });
 
 /**

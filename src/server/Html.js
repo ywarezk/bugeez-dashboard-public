@@ -11,46 +11,44 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
 
-export default class Html extends React.Component{
+export default class Html extends React.Component {
     static propTypes = {
         component: React.PropTypes.string,
         store: React.PropTypes.object,
-        assets: React.PropTypes.object,
     }
 
     render() {
-        const {component, assets, store} = this.props;
+        const { component, store } = this.props;
         const head = Helmet.rewind();
         const globals = `
             window.__DEVELOPMENT__=${global.__DEVELOPMENT__};
             window.__CLIENT__= true;
         `;
         return (
-            <html lang="en-us">
+            <html lang="en">
                 <head>
                     {head.title.toComponent()}
                     {head.meta.toComponent()}
 
                     { /* begin global styling*/ }
                     <style>
-                    {
-                        (() => {
-                            const styles = require('font-awesome/scss/font-awesome.scss');
-                            debugger;
-                            return styles
-                        })()
-                    }
+                        {
+                            (() => {
+                                const styles = require('font-awesome/scss/font-awesome.scss');
+
+                                debugger;
+                                return styles;
+                            })()
+                        }
                     </style>
                     { /* end global styling*/ }
 
                 </head>
                 <body>
-                    <script dangerouslySetInnerHTML={{__html: `window.__initialState=${serialize(store.getState())};${globals}`}} charSet="UTF-8"/>
-                    <div id="nz-content" dangerouslySetInnerHTML={{__html: component}}>
-                    </div>
-                    <script src={assets.javascript.main} charSet="UTF-8"/>
+                    <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${serialize(store.getState())};${globals}` }} charSet="UTF-8" />
+                    <div id="nz-content" dangerouslySetInnerHTML={{ __html: component }} />
                 </body>
             </html>
-        )
+        );
     }
 }

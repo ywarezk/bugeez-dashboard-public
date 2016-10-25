@@ -18,7 +18,9 @@
     "no-underscore-dangle": 0,
     "arrow-body-style": 0,
     "no-debugger": 0,
-    "spaced-comment": 0
+    "spaced-comment": 0,
+    "global-require": 0,
+    "prefer-template": 0
   },
   "plugins": [
     "react", "import"
