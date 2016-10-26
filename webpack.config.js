@@ -25,7 +25,7 @@ var commonConfig = {
                 loaders: ['babel-loader', 'eslint-loader'],
                 exclude: /node_modules/
             },
-            { test: /\.scss$/, include: /node_modules/, loader: ExtractTextPlugin.extract({
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract({
                 fallbackLoader: "style-loader",
                 loader: "css-loader!sass-loader"
             }) },
@@ -49,7 +49,7 @@ var clientConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'client'),
-    publicPath: isProd ? 'https://cdn.bugeez.io/' : 'http://localhost:3000/assets/dist/',
+    publicPath: isProd ? 'https://cdn.bugeez.io/' : 'http://localhost:3000/assets/',
     filename: '[name].[chunkhash].js'
   },
   node: {
@@ -101,10 +101,10 @@ var serverConfig = {
     externals: includeClientPackages([
         'commonjs express',
         'commonjs rxjs'
-    ]),
-    plugins: [
-        new webpack.IgnorePlugin(/\.(css|less|scss)$/)
-    ]
+    ])
+    // plugins: [
+    //     new webpack.IgnorePlugin(/\.(css|less|scss)$/)
+    // ]
 };
 
 // Default config

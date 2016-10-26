@@ -38,7 +38,7 @@ global.__CLIENT__ = false;
 /**
  * serve the static files from the dist folder
  */
-app.use('/assets', Express.static(path.join(rootDir, 'dist')));
+app.use('/assets', Express.static(path.join(rootDir, 'dist', 'client')));
 
 /**
  * Main function that renders our app in the
@@ -125,4 +125,3 @@ server.listen(3000, (err) => {
     }
     console.info('Application is running on port 3000');
 });
-

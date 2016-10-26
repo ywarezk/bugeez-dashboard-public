@@ -21,7 +21,7 @@ import { bindActionCreators } from 'redux';
 import DevTools from '../../components/DevTools/DevTools';
 import * as devToolsActions from '../../redux/actions/devtools';
 
-require('font-awesome/scss/font-awesome.scss');
+require('./app.styles.scss');
 
 /******************
  * end imports

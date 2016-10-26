@@ -29,6 +29,7 @@ export default class Html extends React.Component {
                 <head>
                     {head.title.toComponent()}
                     {head.meta.toComponent()}
+                    <link rel="stylesheet" href="/assets/styles.css" />
                 </head>
                 <body>
                     <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${serialize(store.getState())};${globals}` }} charSet="UTF-8" />
