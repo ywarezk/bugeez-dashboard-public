@@ -14,6 +14,7 @@ var WebpackMd5Hash = require('webpack-md5-hash');
 var S3Plugin = require('webpack-s3-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
+var AssetsPlugin = require('assets-webpack-plugin')
 
 var isProd = process.env.NODE_ENV === 'production';
 
@@ -38,7 +39,8 @@ var commonConfig = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles.[hash].css"),
+        new AssetsPlugin()
     ]
 }
 

@@ -15,10 +15,11 @@ export default class Html extends React.Component {
     static propTypes = {
         component: React.PropTypes.string,
         store: React.PropTypes.object,
+        assets: React.PropTypes.object,
     }
 
     render() {
-        const { component, store } = this.props;
+        const { component, store, assets } = this.props;
         const head = Helmet.rewind();
         const globals = `
             window.__DEVELOPMENT__=${global.__DEVELOPMENT__};
@@ -29,11 +30,12 @@ export default class Html extends React.Component {
                 <head>
                     {head.title.toComponent()}
                     {head.meta.toComponent()}
-                    <link rel="stylesheet" href="/assets/styles.css" />
+                    <link type="text/css" rel="stylesheet" href={assets.app.css} />
                 </head>
                 <body>
                     <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${serialize(store.getState())};${globals}` }} charSet="UTF-8" />
                     <div id="nz-content" dangerouslySetInnerHTML={{ __html: component }} />
+                    <script src={assets.app.js}></script>
                 </body>
             </html>
         );

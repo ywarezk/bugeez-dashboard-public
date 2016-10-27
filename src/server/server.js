@@ -28,6 +28,8 @@ const pretty = new PrettyError();
 
 // root dir
 const path = require('path');
+const fs = require('fs');
+
 
 const rootDir = path.resolve(__dirname, '../../');
 
@@ -35,10 +37,24 @@ const rootDir = path.resolve(__dirname, '../../');
 global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 global.__CLIENT__ = false;
 
+let webpackAssets = null;
+
 /**
  * serve the static files from the dist folder
  */
 app.use('/assets', Express.static(path.join(rootDir, 'dist', 'client')));
+
+/**
+ * get webpack assets if
+ */
+app.use((req, res, next) => {
+    if (webpackAssets !== null) next();
+    fs.readFile(rootDir + '/webpack-assets.json', 'utf8', (err, data) => {
+        if (err) throw err; // we'll not consider error handling for now
+        webpackAssets = JSON.parse(data);
+        next();
+    });
+});
 
 /**
  * Main function that renders our app in the
@@ -93,6 +109,7 @@ app.use((req, res) => {
                     '<!DOCTYPE html>' + ReactDOM.renderToString(<Html
                       store={store}
                       component={componentString}
+                      assets={webpackAssets}
                     />)
                 );
                 return;
