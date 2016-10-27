@@ -4,3 +4,5 @@ dist
 .idea/*
 .idea/modules.xml
 .idea/bugeez-dashboard-diys.iml
+webpack-assets.json
+npm-debug.log
