@@ -39,7 +39,7 @@ var commonConfig = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("styles.[hash].css"),
+        new ExtractTextPlugin("styles.[contenthash].css"),
         new AssetsPlugin()
     ]
 }
