@@ -35,7 +35,7 @@ export default class Html extends React.Component {
                 <body>
                     <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${serialize(store.getState())};${globals}` }} charSet="UTF-8" />
                     <div id="nz-content" dangerouslySetInnerHTML={{ __html: component }} />
-                    <script src={assets.app.js}></script>
+                    <script src={assets.app.js} />
                 </body>
             </html>
         );
