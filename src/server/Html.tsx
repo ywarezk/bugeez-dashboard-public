@@ -10,13 +10,16 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
+declare var global : any;
 
-export default class Html extends React.Component {
-    static propTypes = {
-        component: React.PropTypes.string,
-        store: React.PropTypes.object,
-        assets: React.PropTypes.object,
-    }
+interface HtmlPropTypes {
+    component : string,
+    store : any,
+    assets : any
+}
+
+export default class Html extends React.Component<HtmlPropTypes, any> {
+
 
     render() {
         const { component, store, assets } = this.props;

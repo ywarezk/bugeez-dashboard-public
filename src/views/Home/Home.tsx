@@ -7,13 +7,13 @@
  * @copyright: Nerdeez Ltd
  */
 
-import React from 'react';
-import Helmet from 'react-helmet';
+import * as React from 'react';
+import * as Helmet from 'react-helmet';
 import TodoList from '../../components/TodoList/TodoList';
 import TodoForm from '../../components/TodoForm/TodoForm';
 import SearchList from '../../components/SearchList/SearchList';
 
-export default class Home extends React.Component {
+export class Home extends React.Component {
     render() {
         return (
             <div>

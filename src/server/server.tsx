@@ -14,17 +14,18 @@ import { Provider } from 'react-redux';
 import http from 'http';
 import Express from 'express';
 import { match, Router } from 'react-router';
-import PrettyError from 'pretty-error';
 import ReactDOM from 'react-dom/server';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import nzCreateStore from '../redux/store/store';
 import Html from './Html';
 import getRoutes from '../routes';
+declare var global : any;
+declare var process : any;
+declare var __dirname : any;
 
 const app = new Express();
-const server = new http.Server(app);
-const pretty = new PrettyError();
+const server = new (http as any).Server(app);
 
 // root dir
 const path = require('path');
@@ -80,7 +81,7 @@ app.use((req, res) => {
 
             // if the route contains error
             if (error) {
-                console.error('Router error: ' + pretty.render(error));
+                console.error('Router error: ' + console.error(error));
                 res.status(500);
                 res.send(`
                     <html>

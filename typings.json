@@ -2,6 +2,7 @@
   "name": "nerdeez-react-redux-starter-kit",
   "dependencies": {},
   "globalDependencies": {
-    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346"
+    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
+    "require": "registry:dt/require#2.1.20+20160919185614"
   }
 }

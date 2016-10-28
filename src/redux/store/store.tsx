@@ -16,6 +16,8 @@ import reducer from '../reducers/reducers';
 import { getAllTasks, searchTasks } from '../epics/todo';
 import DevTools from '../../components/DevTools/DevTools';
 
+declare var __DEVELOPMENT__ : any;
+declare var __CLIENT__ : any;
 
 export default function nzCreateStore(history) {
     const reduxRouterMiddleware = routerMiddleware(history);
@@ -28,13 +30,13 @@ export default function nzCreateStore(history) {
     if (__DEVELOPMENT__ && __CLIENT__) {
         finalCreateStore = compose(
             applyMiddleware(...middleware),
-            window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+            (<any>window).devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
             persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
         )(createStore);
     } else if (__CLIENT__) {
         return finalCreateStore(
             reducer,
-            window.__initialState
+            (<any>window).__initialState
         );
     } else {
         finalCreateStore = compose(

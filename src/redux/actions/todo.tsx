@@ -7,10 +7,10 @@
  * @copyright: Nerdeez Ltd
  */
 
-export const ADD_TODO = 'ADD_TODO';
-export const SET_TODO_LIST = 'SET_TODO_LIST';
-export const GET_TODO_LIST = 'GET_TODO_LIST';
-export const SEARCH_TODO = 'SEARCH_TODO';
+export const ADD_TODO : string = 'ADD_TODO';
+export const SET_TODO_LIST : string = 'SET_TODO_LIST';
+export const GET_TODO_LIST : string = 'GET_TODO_LIST';
+export const SEARCH_TODO : string = 'SEARCH_TODO';
 
 /**
  * add todo to the state array of todos

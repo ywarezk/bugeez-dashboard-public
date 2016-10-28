@@ -81,6 +81,7 @@
     "@types/react-helmet": "0.0.24",
     "@types/react-redux": "^4.4.32",
     "@types/react-router": "^2.0.38",
+    "@types/react-router-redux": "^4.0.34",
     "@types/redux-devtools": "^3.0.34",
     "@types/redux-devtools-dock-monitor": "^1.1.29",
     "@types/redux-devtools-log-monitor": "^1.0.29",

@@ -8,9 +8,13 @@
  * @copyright: Nerdeez Ltd
  */
 
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../../redux/actions/todo';
+
+interface TodoFormPropTypes {
+    addTodo() : any
+}
 
 @connect(
     null,
@@ -18,10 +22,8 @@ import { addTodo } from '../../redux/actions/todo';
         addTodo: todo => dispatch(addTodo(todo)),
     })
 )
-export default class TodoForm extends React.Component {
-    static propTypes = {
-        addTodo: React.PropTypes.func.isRequired,
-    }
+export default class TodoForm extends React.Component<TodoFormPropTypes, any> {
+    this._todoInput : any
 
     constructor() {
         super();

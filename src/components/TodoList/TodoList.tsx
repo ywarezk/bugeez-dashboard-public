@@ -7,9 +7,14 @@
  * @copyright: Nerdeez Ltd
  */
 
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getTodoList } from '../../redux/actions/todo';
+
+interface TodoListPropTypes {
+    todos : Array<any>,
+    getTodoList() : any
+}
 
 @connect(
     state => ({
@@ -19,11 +24,7 @@ import { getTodoList } from '../../redux/actions/todo';
         getTodoList: () => dispatch(getTodoList()),
     })
 )
-export default class TodoList extends React.Component {
-    static propTypes = {
-        todos: React.PropTypes.array.isRequired,
-        getTodoList: React.PropTypes.func.isRequired,
-    }
+export default class TodoList extends React.Component<TodoListPropTypes, any> {
 
     /**
      * after component mounts get from the

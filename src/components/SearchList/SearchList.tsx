@@ -8,9 +8,13 @@
  * @copyright: Nerdeez
  */
 
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { searchTodoList } from '../../redux/actions/todo';
+
+interface SearchListPropTypes {
+    searchTodoList() : any
+}
 
 @connect(
     null,
@@ -18,10 +22,8 @@ import { searchTodoList } from '../../redux/actions/todo';
         searchTodoList: search => dispatch(searchTodoList(search)),
     })
 )
-export default class SearchList extends React.Component {
-    static propTypes = {
-        searchTodoList: React.PropTypes.func.isRequired,
-    }
+export default class SearchList extends React.Component<SearchListPropTypes, any> {
+    private _searchInput : any
 
     constructor() {
         super();
