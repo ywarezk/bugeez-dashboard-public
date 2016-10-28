@@ -7,14 +7,14 @@
  * @copyright: Nerdeez Ltd
  */
 
-export const TOGGLE_DEVTOOLS = 'TOGGLE_DEVTOOLS';
+export const TOGGLE_DEVTOOLS : string = 'TOGGLE_DEVTOOLS';
 
 /**
  * will toggle the dev tools
  * @param {boolean} isShow
  * @returns {{type: string, payload: boolean}}
  */
-export function toggleDevtools(isShow) {
+export function toggleDevtools(isShow : boolean) {
     return {
         type: TOGGLE_DEVTOOLS,
         payload: isShow,

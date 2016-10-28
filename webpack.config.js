@@ -27,7 +27,7 @@ var commonConfig = {
                 exclude: /node_modules/
             },
             {
-                test: /\.ts$/,
+                test: /\.ts?x$/,
                 loader: 'ts-loader'
             },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract({
@@ -51,7 +51,7 @@ var commonConfig = {
 var clientConfig = {
   target: 'web',
   entry: {
-    'app': './src/client.ts'
+    'app': './src/client.tsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'client'),

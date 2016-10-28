@@ -13,19 +13,25 @@
  *******************/
 
 
-import React, { PropTypes } from 'react';
-import Helmet from 'react-helmet';
+import * as React from 'react';
+import * as Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DevTools from '../../components/DevTools/DevTools';
 import * as devToolsActions from '../../redux/actions/devtools';
-
-require('./app.styles.scss');
+import './app.styles.scss';
+declare var __DEVELOPMENT__;
 
 /******************
  * end imports
  *******************/
+
+interface AppProps{
+    children: any;
+    isShowDevTools: boolean;
+    toggleDevtools(isToggle : boolean) : any;
+}
 
 @connect(
     state => ({
@@ -33,23 +39,19 @@ require('./app.styles.scss');
     }),
     dispatch => bindActionCreators(devToolsActions, dispatch)
 )
-export default class App extends React.Component {
-    static propTypes = {
-        children: PropTypes.object.isRequired,
-        isShowDevTools: PropTypes.bool.isRequired,
-        toggleDevtools: PropTypes.func.isRequired,
-    }
+export class App extends React.Component<AppProps, any> {
 
     /**
      * should render dev tools on the client only
      */
-    componentDidMount() {
+    public componentDidMount() {
+
         if (__DEVELOPMENT__ && !this.props.isShowDevTools) {
             this.props.toggleDevtools(true);
         }
     }
 
-    render() {
+    public render() {
         return (
             <div>
 

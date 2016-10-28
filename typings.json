@@ -1,0 +1,7 @@
+{
+  "name": "nerdeez-react-redux-starter-kit",
+  "dependencies": {},
+  "globalDependencies": {
+    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346"
+  }
+}

@@ -7,7 +7,7 @@
  * @copyright: Nerdeez Ltd
  */
 
-import React from 'react';
+import * as React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import * as Layouts from './views';
 

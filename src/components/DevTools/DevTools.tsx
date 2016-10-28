@@ -7,10 +7,10 @@
  * @copyright: Nerdeez Ltd
  */
 
-import React from 'react';
+import * as React from 'react';
 import { createDevTools } from 'redux-devtools';
-import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
+import * as LogMonitor from 'redux-devtools-log-monitor';
+import * as DockMonitor from 'redux-devtools-dock-monitor';
 
 export default createDevTools(
     <DockMonitor
