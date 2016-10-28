@@ -26,6 +26,10 @@ var commonConfig = {
                 loaders: ['babel-loader', 'eslint-loader'],
                 exclude: /node_modules/
             },
+            {
+                test: /\.ts$/,
+                loader: 'ts-loader'
+            },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract({
                 fallbackLoader: "style-loader",
                 loader: "css-loader!sass-loader"
@@ -47,7 +51,7 @@ var commonConfig = {
 var clientConfig = {
   target: 'web',
   entry: {
-    'app': './src/client'
+    'app': './src/client.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'client'),
@@ -87,7 +91,7 @@ if(isProd){
 
 var serverConfig = {
     target: 'node',
-    entry: './src/server/server.js', // use the entry file of the node server if everything is ts rather than es5
+    entry: './src/server/server.ts', // use the entry file of the node server if everything is ts rather than es5
     output: {
         path: path.resolve(__dirname, 'dist', 'server'),
         libraryTarget: 'commonjs2',
