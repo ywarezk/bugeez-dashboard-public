@@ -10,7 +10,7 @@
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
 
-export class About extends React.Component {
+export class About extends React.Component<any, any> {
     render() {
         return (
             <div>

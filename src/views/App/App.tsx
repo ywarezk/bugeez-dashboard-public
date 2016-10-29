@@ -33,13 +33,7 @@ interface AppProps{
     toggleDevtools(isToggle : boolean) : any;
 }
 
-@connect(
-    state => ({
-        isShowDevTools: state.devtoolsReducer.isShowDevTools,
-    }),
-    dispatch => bindActionCreators(devToolsActions, dispatch)
-)
-export class App extends React.Component<AppProps, any> {
+class AppImpl extends React.Component<AppProps, any> {
 
     /**
      * should render dev tools on the client only
@@ -117,3 +111,10 @@ export class App extends React.Component<AppProps, any> {
         );
     }
 }
+
+export const App = connect(
+    state => ({
+        isShowDevTools: state.devtoolsReducer.isShowDevTools,
+    }),
+    dispatch => bindActionCreators(devToolsActions as any, dispatch)
+)(AppImpl);
