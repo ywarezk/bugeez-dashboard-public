@@ -9,12 +9,12 @@
  * @copyright: Nerdeez
  */
 
-import React from 'react';
+import * as React from 'react';
 import { Provider } from 'react-redux';
-import http from 'http';
-import Express from 'express';
+import * as http from 'http';
+import * as Express from 'express';
 import { match, Router } from 'react-router';
-import ReactDOM from 'react-dom/server';
+import * as ReactDOM from 'react-dom/server';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import nzCreateStore from '../redux/store/store.tsx';
@@ -24,7 +24,7 @@ declare var global : any;
 declare var process : any;
 declare var __dirname : any;
 
-const app = new Express();
+const app = Express();
 const server = new (http as any).Server(app);
 
 // root dir

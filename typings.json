@@ -4,6 +4,7 @@
   "globalDependencies": {
     "core-js": "registry:dt/core-js#0.0.0+20160914114559",
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
+    "node": "registry:dt/node#6.0.0+20161019125345",
     "promise": "registry:dt/promise#7.1.1+20160602154553",
     "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
     "redux-devtools-dock-monitor": "registry:dt/redux-devtools-dock-monitor#1.1.1+20160902130643",
