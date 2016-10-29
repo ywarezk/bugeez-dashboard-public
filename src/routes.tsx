@@ -12,9 +12,9 @@ import { Route, IndexRoute } from 'react-router';
 import * as Layouts from './views/index.tsx';
 
 export default () => (
-    <Route path="/" component={Layouts.App}>
-        <IndexRoute component={Layouts.Home} />
-        <Route path="about" component={Layouts.About} />
+    <Route path="/" component={Layouts.App as any}>
+        <IndexRoute component={Layouts.Home as any} />
+        <Route path="about" component={Layouts.About as any} />
     </Route>
 );
 
