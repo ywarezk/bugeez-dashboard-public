@@ -19,7 +19,7 @@ import DevTools from '../../components/DevTools/DevTools.tsx';
 declare var __DEVELOPMENT__ : any;
 declare var __CLIENT__ : any;
 
-export default function nzCreateStore(history) {
+export default function nzCreateStore(history = null) {
     const reduxRouterMiddleware = routerMiddleware(history);
     const middleware = [
         reduxRouterMiddleware,

@@ -16,10 +16,9 @@ const initialState = {
 export default function devtoolsReducer(state = initialState, action) {
     switch (action.type) {
         case TOGGLE_DEVTOOLS:
-            return {
-                ...state,
-                isShowDevTools: action.payload,
-            };
+            return Object.assign({}, state, {
+                isShowDevTools: action.payload
+            });
         default:
             return state;
     }
