@@ -18,8 +18,8 @@ import * as Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import DevTools from '../../components/DevTools/DevTools';
-import * as devToolsActions from '../../redux/actions/devtools';
+import DevTools from '../../components/DevTools/DevTools.tsx';
+import * as devToolsActions from '../../redux/actions/devtools.tsx';
 import './app.styles.scss';
 declare var __DEVELOPMENT__;
 

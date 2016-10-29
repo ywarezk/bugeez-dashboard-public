@@ -9,22 +9,14 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getTodoList } from '../../redux/actions/todo';
+import { getTodoList } from '../../redux/actions/todo.tsx';
 
 interface TodoListPropTypes {
     todos : Array<any>,
     getTodoList() : any
 }
 
-@connect(
-    state => ({
-        todos: state.todoReducer.todos,
-    }),
-    dispatch => ({
-        getTodoList: () => dispatch(getTodoList()),
-    })
-)
-export default class TodoList extends React.Component<TodoListPropTypes, any> {
+class TodoListImpl extends React.Component<TodoListPropTypes, any> {
 
     /**
      * after component mounts get from the
@@ -51,3 +43,12 @@ export default class TodoList extends React.Component<TodoListPropTypes, any> {
         );
     }
 }
+
+export const TodoList = connect(
+    state => ({
+        todos: state.todoReducer.todos,
+    }),
+    dispatch => ({
+        getTodoList: () => dispatch(getTodoList()),
+    })
+)(TodoListImpl);

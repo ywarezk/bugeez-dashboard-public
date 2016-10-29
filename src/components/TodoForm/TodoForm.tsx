@@ -10,20 +10,14 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../../redux/actions/todo';
+import { addTodo } from '../../redux/actions/todo.tsx';
 
 interface TodoFormPropTypes {
-    addTodo() : any
+    addTodo(text : string) : any
 }
 
-@connect(
-    null,
-    dispatch => ({
-        addTodo: todo => dispatch(addTodo(todo)),
-    })
-)
-export default class TodoForm extends React.Component<TodoFormPropTypes, any> {
-    this._todoInput : any
+class TodoFormImpl extends React.Component<TodoFormPropTypes, any> {
+    private _todoInput : any;
 
     constructor() {
         super();
@@ -52,3 +46,10 @@ export default class TodoForm extends React.Component<TodoFormPropTypes, any> {
         );
     }
 }
+
+export const TodoForm = connect(
+    null,
+    dispatch => ({
+        addTodo: todo => dispatch(addTodo(todo)),
+    })
+)(TodoFormImpl);

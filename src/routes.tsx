@@ -9,7 +9,7 @@
 
 import * as React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import * as Layouts from './views';
+import * as Layouts from './views/index.tsx';
 
 export default () => (
     <Route path="/" component={Layouts.App}>

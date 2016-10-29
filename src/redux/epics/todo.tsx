@@ -12,7 +12,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import { ajax } from 'rxjs/observable/dom/ajax';
-import { GET_TODO_LIST, setTodos, SEARCH_TODO } from '../actions/todo';
+import { GET_TODO_LIST, setTodos, SEARCH_TODO } from '../actions/todo.tsx';
 
 /**
  * epic to get all the tasks

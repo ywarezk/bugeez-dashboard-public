@@ -7,7 +7,7 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { ADD_TODO, SET_TODO_LIST } from '../actions/todo';
+import { ADD_TODO, SET_TODO_LIST } from '../actions/todo.tsx';
 
 
 const initialState = {

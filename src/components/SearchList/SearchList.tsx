@@ -10,20 +10,14 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { searchTodoList } from '../../redux/actions/todo';
+import { searchTodoList } from '../../redux/actions/todo.tsx';
 
 interface SearchListPropTypes {
-    searchTodoList() : any
+    searchTodoList(search : string) : any
 }
 
-@connect(
-    null,
-    dispatch => ({
-        searchTodoList: search => dispatch(searchTodoList(search)),
-    })
-)
-export default class SearchList extends React.Component<SearchListPropTypes, any> {
-    private _searchInput : any
+class SearchListImpl extends React.Component<SearchListPropTypes, any> {
+    private _searchInput : any;
 
     constructor() {
         super();
@@ -51,3 +45,7 @@ export default class SearchList extends React.Component<SearchListPropTypes, any
         );
     }
 }
+
+export const SearchList = connect(null, dispatch => ({
+        searchTodoList: search => dispatch(searchTodoList(search)),
+    }))(SearchListImpl);

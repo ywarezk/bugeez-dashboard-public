@@ -10,11 +10,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
-import thunk from 'redux-thunk';
+import * as thunk from 'redux-thunk';
 import { persistState } from 'redux-devtools';
-import reducer from '../reducers/reducers';
-import { getAllTasks, searchTasks } from '../epics/todo';
-import DevTools from '../../components/DevTools/DevTools';
+import reducer from '../reducers/reducers.tsx';
+import { getAllTasks, searchTasks } from '../epics/todo.tsx';
+import DevTools from '../../components/DevTools/DevTools.tsx';
 
 declare var __DEVELOPMENT__ : any;
 declare var __CLIENT__ : any;
@@ -30,13 +30,13 @@ export default function nzCreateStore(history) {
     if (__DEVELOPMENT__ && __CLIENT__) {
         finalCreateStore = compose(
             applyMiddleware(...middleware),
-            (<any>window).devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+            (window as any).devToolsExtension ? (window as any).devToolsExtension() : DevTools.instrument(),
             persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
         )(createStore);
     } else if (__CLIENT__) {
         return finalCreateStore(
             reducer,
-            (<any>window).__initialState
+            (window as any).__initialState
         );
     } else {
         finalCreateStore = compose(

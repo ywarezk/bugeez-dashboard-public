@@ -28,7 +28,7 @@ var commonConfig = {
             },
             {
                 test: /\.ts?x$/,
-                loader: 'ts-loader'
+                loader: 'babel-loader!ts-loader'
             },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract({
                 fallbackLoader: "style-loader",
@@ -45,7 +45,10 @@ var commonConfig = {
     plugins: [
         new ExtractTextPlugin("styles.[contenthash].css"),
         new AssetsPlugin()
-    ]
+    ],
+    resolve: {
+      extensions: ['', '.js', '.jsx', 'ts', 'tsx']
+    },
 }
 
 var clientConfig = {
@@ -91,7 +94,7 @@ if(isProd){
 
 var serverConfig = {
     target: 'node',
-    entry: './src/server/server.ts', // use the entry file of the node server if everything is ts rather than es5
+    entry: './src/server/server.tsx', // use the entry file of the node server if everything is ts rather than es5
     output: {
         path: path.resolve(__dirname, 'dist', 'server'),
         libraryTarget: 'commonjs2',

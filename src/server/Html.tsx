@@ -9,7 +9,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import serialize from 'serialize-javascript';
+import * as serialize from 'serialize-javascript';
 declare var global : any;
 
 interface HtmlPropTypes {

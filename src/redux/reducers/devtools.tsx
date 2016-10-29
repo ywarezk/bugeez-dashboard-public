@@ -7,7 +7,7 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { TOGGLE_DEVTOOLS } from '../actions/devtools';
+import { TOGGLE_DEVTOOLS } from '../actions/devtools.tsx';
 
 const initialState = {
     isShowDevTools: false,
