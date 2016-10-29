@@ -11,7 +11,7 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import getRoutes from './routes';
+import getRoutes from './routes.tsx';
 import nzCreateStore from './redux/store/store.tsx';
 
 const store = nzCreateStore();
