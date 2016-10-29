@@ -23,7 +23,7 @@ export default function nzCreateStore(history = null) {
     const reduxRouterMiddleware = routerMiddleware(history);
     const middleware = [
         reduxRouterMiddleware,
-        thunk,
+        thunk as any,
         createEpicMiddleware(combineEpics(getAllTasks, searchTasks)),
     ];
     let finalCreateStore;
@@ -31,7 +31,7 @@ export default function nzCreateStore(history = null) {
         finalCreateStore = compose(
             applyMiddleware(...middleware),
             (window as any).devToolsExtension ? (window as any).devToolsExtension() : DevTools.instrument(),
-            persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+            persistState((window as any).location.href.match(/[?&]debug_session=([^&]+)\b/))
         )(createStore);
     } else if (__CLIENT__) {
         return finalCreateStore(
