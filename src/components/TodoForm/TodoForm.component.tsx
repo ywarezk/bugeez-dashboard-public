@@ -11,33 +11,34 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../../redux/actions/todo.actions.tsx';
+import { IAction } from '../../redux/actions/action.interface';
 
-interface TodoFormPropTypes {
-    addTodo(text : string) : any;
+interface ITodoFormPropTypes {
+    addTodo(text : string) : IAction;
 }
 
-class TodoFormImpl extends React.Component<TodoFormPropTypes, null> {
-    private _todoInput : any;
+class TodoFormImpl extends React.Component<ITodoFormPropTypes, null> {
+    private _todoInput : HTMLInputElement;
 
     constructor() {
         super();
         this._addTodo = this._addTodo.bind(this);
     }
 
-    _addTodo(event) {
+    private _addTodo(event : Event) {
         const text = this._todoInput.value;
         this.props.addTodo(text);
         event.preventDefault();
     }
 
-    render() {
+    public render() {
         return (
             <form onSubmit={this._addTodo}>
                 <div>
                     <label htmlFor='todo'>
                         Todo Item:
                     </label>
-                    <input id='todo' ref={(inputDom) => { this._todoInput = inputDom; }} />
+                    <input id='todo' ref={(inputDom : HTMLInputElement) => { this._todoInput = inputDom; }} />
                 </div>
                 <div>
                     <button type='submit'>Submit</button>

@@ -7,20 +7,21 @@
  * @copyright: Nerdeez
  */
 
+import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
 import { Provider } from 'react-redux';
 
 import { browserHistory, Router } from 'react-router';
 
-import { nzCreateStore } from './redux/store/store.tsx';
+import { store } from './redux/store/store.tsx';
 
-import { getRoutes } from './routes.tsx';
+import { routes } from './routes.tsx';
 
-const store = nzCreateStore();
+const store = store();
 ReactDom.render(
     <Provider store={store}>
-        <Router history={browserHistory}>{getRoutes()}</Router>
+        <Router history={browserHistory}>{routes()}</Router>
     </Provider>,
     document.getElementById('nz-content')
 );

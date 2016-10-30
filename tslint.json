@@ -9,6 +9,10 @@
     "no-relative-imports": false,
     "ordered-imports": false,
     "import-name": false,
-    "no-backbone-get-set-outside-model": false
+    "no-backbone-get-set-outside-model": false,
+    "variable-name": false,
+    "react-this-binding-issue": false,
+    "function-name": false,
+    "no-multiline-string": false
   }
 }

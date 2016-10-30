@@ -9,24 +9,26 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getTodoList } from '../../redux/actions/todo.tsx';
+import { getTodoList } from '../../redux/actions/todo.actions.tsx';
+import { IAction } from '../../redux/actions/action.interface';
+import { Task } from '../../models/Task.model.tsx';
 
-interface TodoListPropTypes {
-    todos : Array<any>,
-    getTodoList() : any
+interface ITodoListPropTypes {
+    todos : Task[];
+    getTodoList() : IAction;
 }
 
-class TodoListImpl extends React.Component<TodoListPropTypes, any> {
+class TodoListImpl extends React.Component<ITodoListPropTypes, null> {
 
     /**
      * after component mounts get from the
      * server the list of todos
      */
-    componentDidMount() {
+    public componentDidMount() {
         this.props.getTodoList();
     }
 
-    render() {
+    public render() {
         const { todos } = this.props;
         let counter = 0;
         return (
@@ -46,9 +48,9 @@ class TodoListImpl extends React.Component<TodoListPropTypes, any> {
 
 export const TodoList = connect(
     state => ({
-        todos: state.todoReducer.todos,
+        todos: state.todoReducer.todos
     }),
     dispatch => ({
-        getTodoList: () => dispatch(getTodoList()),
+        getTodoList: () => dispatch(getTodoList())
     })
 )(TodoListImpl);

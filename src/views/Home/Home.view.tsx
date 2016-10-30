@@ -9,7 +9,7 @@
 
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
-import {TodoList} from '../../components/TodoList/TodoList.tsx';
+import {TodoList} from '../../components/TodoList/TodoList.component.tsx';
 import {TodoForm} from '../../components/TodoForm/TodoForm.component.tsx';
 import {SearchList} from '../../components/SearchList/SearchList.component.tsx';
 

@@ -8,32 +8,32 @@
  * @copyright: Nerdeez
  */
 
-/******************
+/*==================
  * begin imports
- *******************/
-
+ *==================*/
 
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import {devtool} from '../../components/DevTools/devtool.component.tsx';
+import { bindActionCreators, ActionCreatorsMapObject } from 'redux';
+import {DevTools} from '../../components/DevTools/DevTools.component.tsx';
 import * as devToolsActions from '../../redux/actions/devtools.actions.tsx';
 import './app.styles.scss';
+import {IAction} from '../../redux/actions/action.interface.tsx';
 declare var __DEVELOPMENT__;
 
-/******************
+/*==================
  * end imports
- *******************/
+ *==================*/
 
-interface AppProps{
-    children: any;
+interface IAppProps {
+    children: React.ComponentClass<null>;
     isShowDevTools: boolean;
-    toggleDevtools(isToggle : boolean) : any;
+    toggleDevtools(isToggle : boolean) : IAction;
 }
 
-class AppImpl extends React.Component<AppProps, any> {
+class AppImpl extends React.Component<IAppProps, null> {
 
     /**
      * should render dev tools on the client only
@@ -53,7 +53,7 @@ class AppImpl extends React.Component<AppProps, any> {
                 {
                     (() => {
                         if (this.props.isShowDevTools) {
-                            return (<devtool />);
+                            return (<DevTools />);
                         }
                         return null;
                     })()
@@ -61,7 +61,7 @@ class AppImpl extends React.Component<AppProps, any> {
 
                 {/* begin head configuration */}
                 <Helmet
-                  titleTemplate="Nerdeez Starter Kit | %s"
+                  titleTemplate='Nerdeez Starter Kit | %s'
                   meta={
                       [
                           {
@@ -75,8 +75,8 @@ class AppImpl extends React.Component<AppProps, any> {
                                 * Enzyme
                                 * Chai
                                 * React-Helmet
-                                * React-Router`,
-                          },
+                                * React-Router`
+                          }
                       ]
                   }
                 />
@@ -87,8 +87,8 @@ class AppImpl extends React.Component<AppProps, any> {
                     <nav>
                         <ul>
                             <li>
-                                <Link to="/" >Home</Link>
-                                <Link to="/about" >About</Link>
+                                <Link to='/' >Home</Link>
+                                <Link to='/about' >About</Link>
                             </li>
                         </ul>
                     </nav>
@@ -114,7 +114,7 @@ class AppImpl extends React.Component<AppProps, any> {
 
 export const App = connect(
     state => ({
-        isShowDevTools: state.devtoolsReducer.isShowDevTools,
+        isShowDevTools: state.devtoolsReducer.isShowDevTools
     }),
-    dispatch => bindActionCreators(devToolsActions as any, dispatch)
+    dispatch => bindActionCreators(devToolsActions as ActionCreatorsMapObject, dispatch)
 )(AppImpl);
