@@ -7,15 +7,27 @@
  * @copyright: Nerdeez Ltd
  */
 
+/*========================
+ * begin imports
+ *========================*/
+
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import { ajax } from 'rxjs/observable/dom/ajax';
-import { GET_TODO_LIST, setTodos, SEARCH_TODO } from '../actions/todo.tsx';
+import { GET_TODO_LIST, setTodos, SEARCH_TODO } from '../actions/todo.actions.tsx';
 import { ActionsObservable } from 'redux-observable';
 import { Action } from '../actions/action.interface';
 import { Observable } from 'rxjs/Observable';
+
+/*========================
+ * end imports
+ *========================*/
+
+/*========================
+ * begin epics
+ *========================*/
 
 /**
  * epic to get all the tasks
@@ -38,7 +50,7 @@ export function getAllTasks(actions : ActionsObservable<Action>) : Observable<Ac
  * @param actions
  * @returns {Observable<Action>}
  */
-export function searchTasks(actions : ActionsObservable<Action>) : Observable<Action>{
+export function searchTasks(actions : ActionsObservable<Action>) : Observable<Action> {
     return actions
             .ofType(SEARCH_TODO)
             .debounceTime(2000)
@@ -51,3 +63,7 @@ export function searchTasks(actions : ActionsObservable<Action>) : Observable<Ac
                     });
             });
 }
+
+/*========================
+ * end epics
+ *========================*/

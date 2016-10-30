@@ -7,13 +7,33 @@
  * @copyright: Nerdeez Ltd
  */
 
+/*=========================
+ * begin imports
+ *=========================*/
+
 import { Action } from './action.interface';
 import { Task } from '../../models/task.model';
+
+/*=========================
+ * end imports
+ *=========================*/
+
+/*=========================
+ * begin constants
+ *=========================*/
 
 export const ADD_TODO : string = 'ADD_TODO';
 export const SET_TODO_LIST : string = 'SET_TODO_LIST';
 export const GET_TODO_LIST : string = 'GET_TODO_LIST';
 export const SEARCH_TODO : string = 'SEARCH_TODO';
+
+/*=========================
+ * end constants
+ *=========================*/
+
+/*=========================
+ * begin actions
+ *=========================*/
 
 /**
  * add todo to the state array of todos
@@ -23,7 +43,7 @@ export const SEARCH_TODO : string = 'SEARCH_TODO';
 export function addTodo(todo : Task) : Action{
     return {
         type: ADD_TODO,
-        payload: todo,
+        payload: todo
     };
 }
 
@@ -35,7 +55,7 @@ export function addTodo(todo : Task) : Action{
 export function setTodos(todos : Task[]) : Action {
     return {
         type: SET_TODO_LIST,
-        payload: todos,
+        payload: todos
     };
 }
 
@@ -55,6 +75,10 @@ export function getTodoList() : Action {
 export function searchTodoList(search : string) : Action {
     return {
         type: SEARCH_TODO,
-        payload: search,
+        payload: search
     };
 }
+
+/*=========================
+ * end actions
+ *=========================*/
