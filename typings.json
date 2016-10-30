@@ -6,6 +6,7 @@
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
     "node": "registry:dt/node#6.0.0+20161019125345",
     "promise": "registry:dt/promise#7.1.1+20160602154553",
+    "react-global": "registry:dt/react-global#0.14.0+20160316155526",
     "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
     "redux-devtools-dock-monitor": "registry:dt/redux-devtools-dock-monitor#1.1.1+20160902130643",
     "require": "registry:dt/require#2.1.20+20160919185614",

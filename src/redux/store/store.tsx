@@ -17,7 +17,7 @@ import { routerMiddleware } from 'react-router-redux';
 import { persistState } from 'redux-devtools';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import reduxThunk from 'redux-thunk';
-import reducers from '../reducers/combined.reducer.tsx';
+import {combined} from '../reducers/combined.reducer.tsx';
 import { getAllTasks, searchTasks } from '../epics/todo.epics.tsx';
 import { DevTools } from '../../components/DevTools/DevTools.component.tsx';
 
@@ -34,7 +34,7 @@ declare var __CLIENT__: boolean;
 interface IWindow {
     __initialState: Object;
     location: {href : {match() : boolean}};
-    devToolsExtension?() : Object;
+    devToolsExtension?() :  {};
 }
 declare var window : IWindow;
 
@@ -42,7 +42,7 @@ declare var window : IWindow;
  * end declarations
  *=======================*/
 
-export function store(history : H.History = null) {
+export function nzCreateStore(history : H.History = null) {
     const reduxRouterMiddleware = routerMiddleware(history);
     const middleware = [
         reduxRouterMiddleware,
@@ -58,7 +58,7 @@ export function store(history : H.History = null) {
         )(createStore);
     } else if (__CLIENT__) {
         return finalCreateStore(
-            reducers,
+            combined,
             window.__initialState
         );
     } else {
@@ -66,5 +66,5 @@ export function store(history : H.History = null) {
             applyMiddleware(...middleware)
         )(createStore);
     }
-    return finalCreateStore(reducers);
+    return finalCreateStore(combined);
 }

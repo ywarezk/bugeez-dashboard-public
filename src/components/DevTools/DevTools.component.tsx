@@ -11,6 +11,9 @@
  * begin imports
  *=========================*/
 
+/* tslint:disable:no-unused-variable */
+import * as React from 'react';
+/* tslint:enable:no-unused-variable */
 import { createDevTools } from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';

@@ -13,6 +13,7 @@
     "variable-name": false,
     "react-this-binding-issue": false,
     "function-name": false,
-    "no-multiline-string": false
+    "no-multiline-string": false,
+    "export-name": false
   }
 }

@@ -7,18 +7,21 @@
  * @copyright: Nerdeez
  */
 
+/* tslint:disable:no-unused-variable */
 import * as React from 'react';
+/* tslint:enable:no-unused-variable */
+
 import * as ReactDom from 'react-dom';
 
 import { Provider } from 'react-redux';
 
 import { browserHistory, Router } from 'react-router';
 
-import { store } from './redux/store/store.tsx';
+import { nzCreateStore } from './redux/store/store.tsx';
 
 import { routes } from './routes.tsx';
 
-const store = store();
+const store = nzCreateStore();
 ReactDom.render(
     <Provider store={store}>
         <Router history={browserHistory}>{routes()}</Router>
