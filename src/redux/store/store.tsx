@@ -17,9 +17,9 @@ import { routerMiddleware } from 'react-router-redux';
 import { persistState } from 'redux-devtools';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import reduxThunk from 'redux-thunk';
-import reducers from '../reducers/reducers.tsx';
-import { getAllTasks, searchTasks } from '../epics/todo.tsx';
-import DevTools from '../../components/DevTools/DevTools.tsx';
+import reducers from '../reducers/combined.reducer.tsx';
+import { getAllTasks, searchTasks } from '../epics/todo.epics.tsx';
+import { devtool } from '../../components/DevTools/devtool.component.tsx';
 
 /*=======================
  * end imports
@@ -53,7 +53,7 @@ export function store(history : H.History = null) {
     if (__DEVELOPMENT__ && __CLIENT__) {
         finalCreateStore = compose(
             applyMiddleware(...middleware),
-            window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+            window.devToolsExtension ? window.devToolsExtension() : devtool.instrument(),
             persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
         )(createStore);
     } else if (__CLIENT__) {

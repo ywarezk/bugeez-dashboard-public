@@ -40,7 +40,7 @@ export const SEARCH_TODO : string = 'SEARCH_TODO';
  * @param {string} todo - the todo item to add
  * @returns {{type: string, payload: *}}
  */
-export function addTodo(todo : Task) : Action{
+export function addTodo(todo : Task) : Action {
     return {
         type: ADD_TODO,
         payload: todo

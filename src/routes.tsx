@@ -7,17 +7,30 @@
  * @copyright: Nerdeez Ltd
  */
 
-import * as React from "react";
-import { Route, IndexRoute } from "react-router";
-import * as Layouts from "./views/index.tsx";
+/*====================
+ * begin imports
+ *====================*/
 
-export function getRoutes() {
+import { Route, IndexRoute } from 'react-router';
+import * as Layouts from './views/index.tsx';
+
+/*====================
+ * end imports
+ *====================*/
+
+/*====================
+ * begin routes
+ *====================*/
+
+export function routes() {
     return (
-        <Route path="/" component={Layouts.App as any}>
-            <IndexRoute component={Layouts.Home as any} />
-            <Route path="about" component={Layouts.About as any} />
+        <Route path='/' component={Layouts.App}>
+            <IndexRoute component={Layouts.Home} />
+            <Route path='about' component={Layouts.About} />
         </Route>
-    )
+    );
 }
 
-
+/*====================
+ * end routes
+ *====================*/

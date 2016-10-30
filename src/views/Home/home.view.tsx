@@ -13,8 +13,8 @@ import {TodoList} from '../../components/TodoList/TodoList.tsx';
 import {TodoForm} from '../../components/TodoForm/TodoForm.tsx';
 import {SearchList} from '../../components/SearchList/SearchList.tsx';
 
-export class Home extends React.Component<any, any> {
-    render() {
+export class Home extends React.Component<null, null> {
+    public render() {
         return (
             <div>
                 <Helmet

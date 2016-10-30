@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { searchTodoList } from '../../redux/actions/todo.tsx';
+import { searchTodoList } from '../../redux/actions/todo.actions.tsx';
 
 interface SearchListPropTypes {
     searchTodoList(search : string) : any

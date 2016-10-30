@@ -7,27 +7,31 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { ADD_TODO, SET_TODO_LIST } from '../actions/todo.tsx';
+import { ADD_TODO, SET_TODO_LIST } from '../actions/todo.actions.tsx';
+import { Task } from '../../models/task.model.tsx';
+import { IAction } from '../actions/action.interface.tsx';
 
+interface ITodoState {
+    todos : Task[];
+}
 
-const initialState = {
-    todos: [],
+const initialState : ITodoState = {
+    todos: []
 };
 
-export default function todoReducer(state = initialState, action) {
+export function todo(state : ITodoState = initialState, action : IAction) : ITodoState {
     const newArray = [...state.todos];
     switch (action.type) {
         case ADD_TODO:
             newArray.push(action.payload);
             return Object.assign({}, state, {
-                todos: newArray,
+                todos: newArray
             });
         case SET_TODO_LIST:
             return Object.assign({}, state, {
-                todos: action.payload,
+                todos: action.payload
             });
         default:
             return state;
     }
 }
-

@@ -7,7 +7,7 @@
  * @copyright: Nerdeez
  */
 
-export interface Action {
+export interface IAction {
     type : string,
     payload?: any,
     error? : boolean,

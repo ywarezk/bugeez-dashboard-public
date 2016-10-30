@@ -7,7 +7,7 @@
  * @copyright: Nerdeez Ltd
  */
 
-import {Action} from './action.interface';
+import {IAction} from './action.interface.tsx';
 
 export const TOGGLE_DEVTOOLS : string = 'TOGGLE_DEVTOOLS';
 
@@ -16,9 +16,9 @@ export const TOGGLE_DEVTOOLS : string = 'TOGGLE_DEVTOOLS';
  * @param {boolean} isShow
  * @returns {{type: string, payload: boolean}}
  */
-export function toggleDevtools(isShow : boolean) : Action {
+export function toggleDevtools(isShow : boolean) : IAction {
     return {
         type: TOGGLE_DEVTOOLS,
-        payload: isShow,
+        payload: isShow
     };
 }

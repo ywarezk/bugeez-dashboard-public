@@ -7,13 +7,18 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { TOGGLE_DEVTOOLS } from '../actions/devtools.tsx';
+import { TOGGLE_DEVTOOLS } from '../actions/devtools.actions.tsx';
+import { IAction } from '../actions/action.interface.tsx';
 
-const initialState = {
-    isShowDevTools: false,
+interface IDevToolsState {
+    isShowDevTools : boolean;
+}
+
+const initialState : IDevToolsState = {
+    isShowDevTools: false
 };
 
-export default function devtoolsReducer(state = initialState, action) {
+export function devtools(state : IDevToolsState = initialState, action : IAction) : IDevToolsState {
     switch (action.type) {
         case TOGGLE_DEVTOOLS:
             return Object.assign({}, state, {

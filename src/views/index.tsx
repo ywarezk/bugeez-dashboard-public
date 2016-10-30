@@ -7,6 +7,6 @@
  * @copyright: Nerdeez Ltd
  */
 
-export {App} from "./App/App.tsx";
-export {Home} from "./Home/Home.tsx";
-export {About} from "./About/About.tsx";
+export {App} from './App/App.tsx';
+export {Home} from './Home/Home.tsx';
+export {About} from './About/About.tsx';
