@@ -7,19 +7,19 @@
  * @copyright: Nerdeez Ltd
  */
 
-import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
-import { createEpicMiddleware, combineEpics } from 'redux-observable';
-import thunk from 'redux-thunk';
-import { persistState } from 'redux-devtools';
-import reducer from '../reducers/reducers.tsx';
-import { getAllTasks, searchTasks } from '../epics/todo.tsx';
-import DevTools from '../../components/DevTools/DevTools.tsx';
+import { createStore, applyMiddleware, compose } from "redux";
+import { routerMiddleware } from "react-router-redux";
+import { createEpicMiddleware, combineEpics } from "redux-observable";
+import thunk from "redux-thunk";
+import { persistState } from "redux-devtools";
+import reducer from "../reducers/reducers.tsx";
+import { getAllTasks, searchTasks } from "../epics/todo.tsx";
+import DevTools from "../../components/DevTools/DevTools.tsx";
 
-declare var __DEVELOPMENT__ : any;
-declare var __CLIENT__ : any;
+declare var __DEVELOPMENT__: any;
+declare var __CLIENT__: any;
 
-export default function nzCreateStore(history = null) {
+export function nzCreateStore(history = null) {
     const reduxRouterMiddleware = routerMiddleware(history);
     const middleware = [
         reduxRouterMiddleware,

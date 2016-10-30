@@ -1,0 +1,11 @@
+{
+  "rulesDirectory": "node_modules/tslint-microsoft-contrib",
+  "extends": "tslint-microsoft-contrib",
+  "emitErrors": true,
+  "failOnHint": true,
+  "rules": {
+    "no-for-in-array": false,
+    "restrict-plus-operands": false,
+    "no-relative-imports": false
+  }
+}

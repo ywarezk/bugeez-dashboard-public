@@ -7,10 +7,10 @@
  * @author: ywarezk
  */
 
-import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import todoReducer from './todo.tsx';
-import devtoolsReducer from './devtools.tsx';
+import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
+import todoReducer from "./todo.tsx";
+import devtoolsReducer from "./devtools.tsx";
 
 export default combineReducers({
     devtoolsReducer,

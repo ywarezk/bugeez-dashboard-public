@@ -7,12 +7,15 @@
  * @copyright: Nerdeez
  */
 
-import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { Router, browserHistory } from 'react-router';
+
 import { Provider } from 'react-redux';
-import getRoutes from './routes.tsx';
-import nzCreateStore from './redux/store/store.tsx';
+
+import { browserHistory, Router } from 'react-router';
+
+import { nzCreateStore } from './redux/store/store.tsx';
+
+import { getRoutes } from './routes.tsx';
 
 const store = nzCreateStore();
 ReactDom.render(

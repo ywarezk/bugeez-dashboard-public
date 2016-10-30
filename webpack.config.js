@@ -20,6 +20,12 @@ var isProd = process.env.NODE_ENV === 'production';
 
 var commonConfig = {
     module: {
+        preLoaders: [
+            {
+                test: /\.ts?x$/,
+                loader: "tslint"
+            }
+        ],
         loaders: [
             {
                 test: /\.js$/,
@@ -49,6 +55,11 @@ var commonConfig = {
     resolve: {
       extensions: ['', '.js', '.jsx', 'ts', 'tsx']
     },
+
+    tslint: {
+        emitErrors: true,
+        failOnHint: true
+    }
 }
 
 var clientConfig = {
