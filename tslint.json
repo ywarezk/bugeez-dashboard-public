@@ -6,6 +6,8 @@
   "rules": {
     "no-for-in-array": false,
     "restrict-plus-operands": false,
-    "no-relative-imports": false
+    "no-relative-imports": false,
+    "ordered-imports": false,
+    "import-name": false
   }
 }
