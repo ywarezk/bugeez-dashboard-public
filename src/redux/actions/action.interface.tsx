@@ -9,5 +9,7 @@
 
 export interface Action {
     type : string,
-    payload: any
+    payload?: any,
+    error? : boolean,
+    meta?: any
 }
