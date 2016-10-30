@@ -19,7 +19,7 @@ import DockMonitor from 'redux-devtools-dock-monitor';
  * end imports
  *=========================*/
 
-export const devtool =  createDevTools(
+export const DevTools =  createDevTools(
     <DockMonitor
       toggleVisibilityKey='ctrl-H'
       changePositionKey='ctrl-Q'

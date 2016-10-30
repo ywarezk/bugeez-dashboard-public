@@ -13,10 +13,10 @@ import { connect } from 'react-redux';
 import { searchTodoList } from '../../redux/actions/todo.actions.tsx';
 
 interface SearchListPropTypes {
-    searchTodoList(search : string) : any
+    searchTodoList(search : string) : any;
 }
 
-class SearchListImpl extends React.Component<SearchListPropTypes, any> {
+class SearchListImpl extends React.Component<SearchListPropTypes, null> {
     private _searchInput : any;
 
     constructor() {
@@ -36,16 +36,16 @@ class SearchListImpl extends React.Component<SearchListPropTypes, any> {
         return (
             <div>
                 <form>
-                    <label htmlFor="search">
+                    <label htmlFor='search'>
                         Search:
                     </label>
-                    <input onChange={this.searchChanged} id="search" ref={(nodeElement) => { this._searchInput = nodeElement; }} />
+                    <input onChange={this.searchChanged} id='search' ref={(nodeElement) => { this._searchInput = nodeElement; }} />
                 </form>
             </div>
         );
     }
 }
 
-export const SearchList = connect(null, dispatch => ({
-        searchTodoList: search => dispatch(searchTodoList(search)),
-    }))(SearchListImpl);
+export const SearchList : React.ComponentClass = connect(null, dispatch => ({
+    searchTodoList: search => dispatch(searchTodoList(search))
+}))(SearchListImpl);

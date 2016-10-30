@@ -10,13 +10,13 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../../redux/actions/todo.tsx';
+import { addTodo } from '../../redux/actions/todo.actions.tsx';
 
 interface TodoFormPropTypes {
-    addTodo(text : string) : any
+    addTodo(text : string) : any;
 }
 
-class TodoFormImpl extends React.Component<TodoFormPropTypes, any> {
+class TodoFormImpl extends React.Component<TodoFormPropTypes, null> {
     private _todoInput : any;
 
     constructor() {
@@ -34,22 +34,22 @@ class TodoFormImpl extends React.Component<TodoFormPropTypes, any> {
         return (
             <form onSubmit={this._addTodo}>
                 <div>
-                    <label htmlFor="todo">
+                    <label htmlFor='todo'>
                         Todo Item:
                     </label>
-                    <input id="todo" ref={(inputDom) => { this._todoInput = inputDom; }} />
+                    <input id='todo' ref={(inputDom) => { this._todoInput = inputDom; }} />
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type='submit'>Submit</button>
                 </div>
             </form>
         );
     }
 }
 
-export const TodoForm = connect(
+export const TodoForm : React.ComponentClass = connect(
     null,
     dispatch => ({
-        addTodo: todo => dispatch(addTodo(todo)),
+        addTodo: todo => dispatch(addTodo(todo))
     })
 )(TodoFormImpl);

@@ -18,9 +18,9 @@ export class Home extends React.Component<null, null> {
         return (
             <div>
                 <Helmet
-                  title="Homepage"
+                  title='Homepage'
                 />
-                <h1>Welcome to the homepage <i className="fa fa-plane" /></h1>
+                <h1>Welcome to the homepage <i className='fa fa-plane' /></h1>
                 <TodoForm />
                 <SearchList />
                 <TodoList />

@@ -10,12 +10,12 @@
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
 
-export class About extends React.Component<any, any> {
-    render() {
+export class About extends React.Component<null, null> {
+    public render() {
         return (
             <div>
                 <Helmet
-                  title="About Us"
+                  title='About Us'
                 />
                 <h1>
                     Welcome to the about page

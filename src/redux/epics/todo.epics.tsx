@@ -18,7 +18,7 @@ import 'rxjs/add/operator/map';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { GET_TODO_LIST, setTodos, SEARCH_TODO } from '../actions/todo.actions.tsx';
 import { ActionsObservable } from 'redux-observable';
-import { Action } from '../actions/action.interface';
+import { IAction } from '../actions/action.interface.tsx';
 import { Observable } from 'rxjs/Observable';
 
 /*========================

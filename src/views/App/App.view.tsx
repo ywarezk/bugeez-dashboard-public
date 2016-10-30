@@ -18,8 +18,8 @@ import * as Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import DevTools from '../../components/DevTools/DevTools.tsx';
-import * as devToolsActions from '../../redux/actions/devtools.tsx';
+import {devtool} from '../../components/DevTools/devtool.component.tsx';
+import * as devToolsActions from '../../redux/actions/devtools.actions.tsx';
 import './app.styles.scss';
 declare var __DEVELOPMENT__;
 
@@ -53,7 +53,7 @@ class AppImpl extends React.Component<AppProps, any> {
                 {
                     (() => {
                         if (this.props.isShowDevTools) {
-                            return (<DevTools />);
+                            return (<devtool />);
                         }
                         return null;
                     })()
