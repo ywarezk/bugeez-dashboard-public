@@ -10,8 +10,8 @@
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import {TodoList} from '../../components/TodoList/TodoList.tsx';
-import {TodoForm} from '../../components/TodoForm/TodoForm.tsx';
-import {SearchList} from '../../components/SearchList/SearchList.tsx';
+import {TodoForm} from '../../components/TodoForm/TodoForm.component.tsx';
+import {SearchList} from '../../components/SearchList/SearchList.component.tsx';
 
 export class Home extends React.Component<null, null> {
     public render() {

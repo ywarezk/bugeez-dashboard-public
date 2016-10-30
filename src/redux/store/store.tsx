@@ -19,7 +19,7 @@ import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import reduxThunk from 'redux-thunk';
 import reducers from '../reducers/combined.reducer.tsx';
 import { getAllTasks, searchTasks } from '../epics/todo.epics.tsx';
-import { devtool } from '../../components/DevTools/devtool.component.tsx';
+import { DevTools } from '../../components/DevTools/DevTools.component.tsx';
 
 /*=======================
  * end imports
@@ -53,7 +53,7 @@ export function store(history : H.History = null) {
     if (__DEVELOPMENT__ && __CLIENT__) {
         finalCreateStore = compose(
             applyMiddleware(...middleware),
-            window.devToolsExtension ? window.devToolsExtension() : devtool.instrument(),
+            window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
             persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
         )(createStore);
     } else if (__CLIENT__) {

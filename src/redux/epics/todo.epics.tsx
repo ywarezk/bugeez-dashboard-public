@@ -34,7 +34,7 @@ import { Observable } from 'rxjs/Observable';
  * @param {Observable<Action>} actions
  * @returns {Observable<Action>}
  */
-export function getAllTasks(actions : ActionsObservable<Action>) : Observable<Action> {
+export function getAllTasks(actions : ActionsObservable<IAction>) : Observable<IAction> {
     return actions
         .ofType(GET_TODO_LIST)
         .mergeMap(() => {
@@ -50,7 +50,7 @@ export function getAllTasks(actions : ActionsObservable<Action>) : Observable<Ac
  * @param actions
  * @returns {Observable<Action>}
  */
-export function searchTasks(actions : ActionsObservable<Action>) : Observable<Action> {
+export function searchTasks(actions : ActionsObservable<IAction>) : Observable<IAction> {
     return actions
             .ofType(SEARCH_TODO)
             .debounceTime(2000)

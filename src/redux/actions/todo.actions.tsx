@@ -11,7 +11,7 @@
  * begin imports
  *=========================*/
 
-import { Action } from './action.interface';
+import { IAction } from './action.interface';
 import { Task } from '../../models/task.model';
 
 /*=========================
@@ -40,7 +40,7 @@ export const SEARCH_TODO : string = 'SEARCH_TODO';
  * @param {string} todo - the todo item to add
  * @returns {{type: string, payload: *}}
  */
-export function addTodo(todo : Task) : Action {
+export function addTodo(todo : Task) : IAction {
     return {
         type: ADD_TODO,
         payload: todo
@@ -52,7 +52,7 @@ export function addTodo(todo : Task) : Action {
  * @param {Array<Task>} todos - array of todos
  * @returns {{type, payload: *}}
  */
-export function setTodos(todos : Task[]) : Action {
+export function setTodos(todos : Task[]) : IAction {
     return {
         type: SET_TODO_LIST,
         payload: todos
@@ -63,7 +63,7 @@ export function setTodos(todos : Task[]) : Action {
  * gets the full todo list tasks
  * the call to the server will be in the epic
  */
-export function getTodoList() : Action {
+export function getTodoList() : IAction {
     return { type: GET_TODO_LIST };
 }
 
@@ -72,7 +72,7 @@ export function getTodoList() : Action {
  * @param {String} search
  * @returns {{type: string, payload: *}}
  */
-export function searchTodoList(search : string) : Action {
+export function searchTodoList(search : string) : IAction {
     return {
         type: SEARCH_TODO,
         payload: search
