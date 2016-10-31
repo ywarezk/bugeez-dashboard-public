@@ -34,7 +34,7 @@ interface IAppProps {
 }
 
 interface IState {
-    devtoolsReducer: {isShowDevTools : boolean};
+    devtools: {isShowDevTools : boolean};
 }
 
 class AppImpl extends React.Component<IAppProps, null> {
@@ -117,7 +117,7 @@ class AppImpl extends React.Component<IAppProps, null> {
 
 export const App = connect<{isShowDevTools : boolean}, {toggleDevtools(isShow : boolean) : IAction}, null>(
     (state : IState) => ({
-        isShowDevTools: state.devtoolsReducer.isShowDevTools
+        isShowDevTools: state.devtools.isShowDevTools
     }),
     dispatch => bindActionCreators(
         {

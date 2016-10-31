@@ -48,7 +48,7 @@ class TodoListImpl extends React.Component<ITodoListPropTypes, null> {
 
 export const TodoList = connect(
     state => ({
-        todos: state.todoReducer.todos
+        todos: state.todo.todos
     }),
     dispatch => ({
         getTodoList: () => dispatch(getTodoList())

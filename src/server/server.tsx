@@ -16,7 +16,7 @@ import { Provider } from 'react-redux';
 import * as Express from 'express';
 import { match, Router } from 'react-router';
 import * as ReactDOM from 'react-dom/server';
-import createMemoryHistory from 'react-router/lib/createMemoryHistory';
+import * as nzcreateMemoryHistory from 'react-router/lib/createMemoryHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { nzCreateStore } from '../redux/store/store.tsx';
 import { Html } from './Html.component.tsx';
@@ -65,7 +65,9 @@ app.use((req, res, next) => {
  * server side
  */
 app.use((req, res) => {
-    const memoryHistory : H.History = createMemoryHistory();
+    /* tslint:disable:no-any */
+    const memoryHistory : H.History = (nzcreateMemoryHistory as any)();
+    /* tslint:disable:no-any */
     const store = nzCreateStore(memoryHistory);
     const history = syncHistoryWithStore(memoryHistory, store);
 

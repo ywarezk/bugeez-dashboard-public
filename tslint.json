@@ -16,6 +16,7 @@
     "no-multiline-string": false,
     "export-name": false,
     "no-console": false,
-    "react-no-dangerous-html": false
+    "react-no-dangerous-html": false,
+    "no-debugger": false
   }
 }
