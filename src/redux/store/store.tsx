@@ -33,8 +33,8 @@ declare var __DEVELOPMENT__: boolean;
 declare var __CLIENT__: boolean;
 interface IWindow {
     __initialState: Object;
-    location: {href : {match() : boolean}};
-    devToolsExtension?() :  {};
+    location: {href : {match(a : RegExp) : string}};
+    devToolsExtension?() :  {(a: {}): {}};
 }
 declare var window : IWindow;
 

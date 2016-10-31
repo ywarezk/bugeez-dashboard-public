@@ -9,30 +9,29 @@
  * @copyright: Nerdeez
  */
 
+/* tslint:disable:no-unused-variable */
 import * as React from 'react';
+/* tslint:enable:no-unused-variable */
 import { Provider } from 'react-redux';
-import * as http from 'http';
 import * as Express from 'express';
 import { match, Router } from 'react-router';
 import * as ReactDOM from 'react-dom/server';
-import * as createHistory from 'react-router/lib/createMemoryHistory';
+import createMemoryHistory from 'react-router/lib/createMemoryHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
-import nzCreateStore from '../redux/store/store.tsx';
-import Html from './Html.tsx';
-import getRoutes from '../routes.tsx';
-declare var global : any;
-declare var process : any;
-declare var __dirname : any;
+import { nzCreateStore } from '../redux/store/store.tsx';
+import { Html } from './Html.component.tsx';
+import { getRoutes } from '../routes.tsx';
+import { readFile } from 'fs';
+import { resolve, join } from 'path';
+import * as H from 'history';
+
+declare var global : {__DEVELOPMENT__ : boolean, __CLIENT__ : boolean};
+declare var process : {env: {NODE_ENV : string}};
+declare var __dirname : string;
 
 const app = Express();
-const server = new (http as any).Server(app);
 
-// root dir
-const path = require('path');
-const fs = require('fs');
-
-
-const rootDir = path.resolve(__dirname, '../../');
+const rootDir = resolve(__dirname, '../../');
 
 //set the globals
 global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
@@ -43,15 +42,19 @@ let webpackAssets = null;
 /**
  * serve the static files from the dist folder
  */
-app.use('/assets', Express.static(path.join(rootDir, 'dist', 'client')));
+app.use('/assets', Express.static(join(rootDir, 'dist', 'client')));
 
 /**
  * get webpack assets if
  */
 app.use((req, res, next) => {
-    if (webpackAssets !== null) next();
-    fs.readFile(rootDir + '/webpack-assets.json', 'utf8', (err, data) => {
-        if (err) throw err; // we'll not consider error handling for now
+    if (webpackAssets !== null) {
+        next();
+    }
+    readFile(rootDir + '/webpack-assets.json', 'utf8', (err, data) => {
+        if (err) {
+            throw err;
+        } // we'll not consider error handling for now
         webpackAssets = JSON.parse(data);
         next();
     });
@@ -62,7 +65,7 @@ app.use((req, res, next) => {
  * server side
  */
 app.use((req, res) => {
-    const memoryHistory : any = (createHistory as any)(req.originalUrl);
+    const memoryHistory : H.History = createMemoryHistory();
     const store = nzCreateStore(memoryHistory);
     const history = syncHistoryWithStore(memoryHistory, store);
 
@@ -70,7 +73,7 @@ app.use((req, res) => {
         {
             history,
             routes: getRoutes(),
-            location: req.originalUrl,
+            location: req.originalUrl
         },
         (error, redirectLocation, renderProps) => {
             // if the route has a redirect
@@ -137,9 +140,9 @@ app.use((req, res) => {
 /**
  * create the server at port 3000
  */
-server.listen(3000, (err) => {
+app.listen(3000, (err) => {
     if (err) {
         console.error(err);
     }
-    console.info('Application is running on port 3000');
+    console.log('Application is running on port 3000');
 });

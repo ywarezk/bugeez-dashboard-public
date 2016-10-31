@@ -25,7 +25,7 @@ class TodoFormImpl extends React.Component<ITodoFormPropTypes, null> {
         this._addTodo = this._addTodo.bind(this);
     }
 
-    private _addTodo(event : Event) {
+    private _addTodo(event : React.FormEvent<HTMLFormElement>) {
         const text = this._todoInput.value;
         this.props.addTodo(text);
         event.preventDefault();
@@ -48,7 +48,7 @@ class TodoFormImpl extends React.Component<ITodoFormPropTypes, null> {
     }
 }
 
-export const TodoForm : React.ComponentClass = connect(
+export const TodoForm = connect(
     null,
     dispatch => ({
         addTodo: todo => dispatch(addTodo(todo))

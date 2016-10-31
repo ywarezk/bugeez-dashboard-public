@@ -9,18 +9,18 @@
 
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
-declare var global : any;
+import {Store} from 'redux';
+declare var global : {__DEVELOPMENT__};
 
-interface HtmlPropTypes {
-    component : string,
-    store : any,
-    assets : any
+interface IHtmlPropTypes {
+    component : string;
+    store : Store<null>;
+    assets : {app: {js : string, css : string}};
 }
 
-export default class Html extends React.Component<HtmlPropTypes, any> {
+export class Html extends React.Component<IHtmlPropTypes, null> {
 
-
-    render() {
+    public render() {
         const { component, store, assets } = this.props;
         const head = Helmet.rewind();
         const globals = `
@@ -28,15 +28,17 @@ export default class Html extends React.Component<HtmlPropTypes, any> {
             window.__CLIENT__= true;
         `;
         return (
-            <html lang="en">
+            <html lang='en'>
                 <head>
                     {head.title.toComponent()}
                     {head.meta.toComponent()}
-                    <link type="text/css" rel="stylesheet" href={assets.app.css} />
+                    <link type='text/css' rel='stylesheet' href={assets.app.css} />
                 </head>
                 <body>
-                    <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${JSON.stringify(store.getState())};${globals}` }} charSet="UTF-8" />
-                    <div id="nz-content" dangerouslySetInnerHTML={{ __html: component }} />
+                    <script
+                        dangerouslySetInnerHTML={{ __html: `window.__initialState=${JSON.stringify(store.getState())};${globals}` }}
+                        charSet='UTF-8' />
+                    <div id='nz-content' dangerouslySetInnerHTML={{ __html: component }} />
                     <script src={assets.app.js} />
                 </body>
             </html>

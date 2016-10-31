@@ -19,12 +19,12 @@ import { browserHistory, Router } from 'react-router';
 
 import { nzCreateStore } from './redux/store/store.tsx';
 
-import { routes } from './routes.tsx';
+import { getRoutes } from './routes.tsx';
 
 const store = nzCreateStore();
 ReactDom.render(
     <Provider store={store}>
-        <Router history={browserHistory}>{routes()}</Router>
+        <Router history={browserHistory}>{getRoutes()}</Router>
     </Provider>,
     document.getElementById('nz-content')
 );

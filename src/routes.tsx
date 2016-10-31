@@ -11,6 +11,9 @@
  * begin imports
  *====================*/
 
+/* tslint:disable:no-unused-variable */
+import * as React from 'react';
+/* tslint:enable:no-unused-variable */
 import { Route, IndexRoute } from 'react-router';
 import * as Layouts from './views/index.tsx';
 
@@ -22,7 +25,7 @@ import * as Layouts from './views/index.tsx';
  * begin routes
  *====================*/
 
-export function routes() {
+export function getRoutes() {
     return (
         <Route path='/' component={Layouts.App}>
             <IndexRoute component={Layouts.Home} />

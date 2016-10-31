@@ -48,6 +48,6 @@ class SearchListImpl extends React.Component<ISearchListPropTypes, null> {
     }
 }
 
-export const SearchList : React.ComponentClass = connect(null, dispatch => ({
+export const SearchList = connect(null, dispatch => ({
     searchTodoList: search => dispatch(searchTodoList(search))
 }))(SearchListImpl);

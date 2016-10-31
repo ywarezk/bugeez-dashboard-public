@@ -16,9 +16,9 @@ import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { bindActionCreators, ActionCreatorsMapObject } from 'redux';
+import { bindActionCreators } from 'redux';
 import {DevTools} from '../../components/DevTools/DevTools.component.tsx';
-import * as devToolsActions from '../../redux/actions/devtools.actions.tsx';
+import {toggleDevtools} from '../../redux/actions/devtools.actions.tsx';
 import './app.styles.scss';
 import {IAction} from '../../redux/actions/action.interface.tsx';
 declare var __DEVELOPMENT__;
@@ -28,9 +28,13 @@ declare var __DEVELOPMENT__;
  *==================*/
 
 interface IAppProps {
-    children: React.ComponentClass<null>;
+    children?: React.ComponentClass<null>;
     isShowDevTools: boolean;
     toggleDevtools(isToggle : boolean) : IAction;
+}
+
+interface IState {
+    devtoolsReducer: {isShowDevTools : boolean};
 }
 
 class AppImpl extends React.Component<IAppProps, null> {
@@ -39,7 +43,6 @@ class AppImpl extends React.Component<IAppProps, null> {
      * should render dev tools on the client only
      */
     public componentDidMount() {
-
         if (__DEVELOPMENT__ && !this.props.isShowDevTools) {
             this.props.toggleDevtools(true);
         }
@@ -112,9 +115,14 @@ class AppImpl extends React.Component<IAppProps, null> {
     }
 }
 
-export const App = connect(
-    state => ({
+export const App = connect<{isShowDevTools : boolean}, {toggleDevtools(isShow : boolean) : IAction}, null>(
+    (state : IState) => ({
         isShowDevTools: state.devtoolsReducer.isShowDevTools
     }),
-    dispatch => bindActionCreators(devToolsActions as ActionCreatorsMapObject, dispatch)
+    dispatch => bindActionCreators(
+        {
+            toggleDevtools
+        },
+        dispatch
+    )
 )(AppImpl);
