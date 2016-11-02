@@ -21,6 +21,16 @@ export class Home extends React.Component<null, null> {
                   title='Homepage'
                 />
                 <h1>Welcome to the homepage <i className='fa fa-plane' /></h1>
+                <h3>Checking bootstrap</h3>
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-xs-12'>
+                            <div className='alert-danger alert'>
+                                Danger will robinson!
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <TodoForm />
                 <SearchList />
                 <TodoList />
