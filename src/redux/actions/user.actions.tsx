@@ -11,8 +11,8 @@
  * begin imports
  *=========================*/
 
-import {IAction} from "./action.interface";
-import {User} from "../../models/User.model";
+import {IAction} from './action.interface';
+import {User} from '../../models/User.model';
 
 /*=========================
  * end imports
@@ -38,10 +38,10 @@ export const SET_USER = 'SET_USER';
  * for the user from the server
  * @returns {{type: string}}
  */
-export function getUser() : IAction{
+export function getUser() : IAction {
     return {
         type: GET_USER
-    }
+    };
 }
 
 /**
@@ -54,7 +54,7 @@ export function setUser(user : User) : IAction {
     return {
         type: SET_USER,
         payload: user
-    }
+    };
 }
 
 /*=========================
