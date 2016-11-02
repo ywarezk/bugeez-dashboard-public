@@ -15,6 +15,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { todo } from './todo.reducer.tsx';
 import { devtools } from './devtools.reducer.tsx';
+import {userReducer} from './user.reducer';
 
 /*=======================
  * end imports
@@ -27,6 +28,7 @@ import { devtools } from './devtools.reducer.tsx';
 export const combined = combineReducers({
     devtools,
     todo,
+    userReducer,
     routing: routerReducer
 });
 
