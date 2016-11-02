@@ -33,6 +33,9 @@ export class Html extends React.Component<IHtmlPropTypes, null> {
                     {head.title.toComponent()}
                     {head.meta.toComponent()}
                     <link type='text/css' rel='stylesheet' href={assets.app.css} />
+                    <link
+                        href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400'
+                        rel='stylesheet' type='text/css' />
                 </head>
                 <body>
                     <script

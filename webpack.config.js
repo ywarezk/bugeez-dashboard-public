@@ -46,6 +46,13 @@ var commonConfig = {
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                ]
+            }
         ]
     },
     plugins: [
