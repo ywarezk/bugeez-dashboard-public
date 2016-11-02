@@ -17,6 +17,8 @@
     "export-name": false,
     "no-console": false,
     "react-no-dangerous-html": false,
-    "no-debugger": false
+    "no-debugger": false,
+    "no-require-imports": false,
+    "no-var-requires": false
   }
 }
