@@ -91,6 +91,7 @@
     "@types/redux-devtools-dock-monitor": "^1.1.29",
     "@types/redux-devtools-log-monitor": "^1.0.29",
     "@types/redux-thunk": "^2.1.31",
+    "angular-material": "^1.1.1",
     "bootstrap-sass": "^3.3.7",
     "express": "^4.14.0",
     "font-awesome": "^4.7.0",
